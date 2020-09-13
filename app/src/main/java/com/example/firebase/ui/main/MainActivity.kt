@@ -1,4 +1,4 @@
-package com.example.firebase.ui
+package com.example.firebase.ui.main
 
 
 
