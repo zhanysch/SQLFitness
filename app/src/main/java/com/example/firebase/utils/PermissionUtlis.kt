@@ -1,4 +1,4 @@
-package com.ok.ui
+package com.example.firebase.utils
 
 import android.Manifest
 import android.content.pm.PackageManager
