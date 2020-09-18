@@ -2,6 +2,8 @@ package com.example.firebase.base
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.os.Handler
+import android.os.Looper
 import com.example.firebase.R
 import com.example.firebase.utils.MapUtils
 import com.example.firebase.utils.PermissionUtlis
@@ -121,10 +123,14 @@ abstract class BaseMapActivity: SupportMapActivity() {
     }
 
 
-    private fun animateCamera(latLng: LatLng, zoom: Double = 17.0){
-        map?.animateCamera(
-            (MapUtils.getCameraPosition(latLng, zoom)),
-            DURATION_CAMERA)
+    private fun animateCamera(latLng: LatLng, zoom: Double = CAMERA_ZOOM){
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            map?.animateCamera(
+                MapUtils.getCameraPosition(latLng, zoom),
+                DURATION_CAMERA
+            )
+        },6000)
     }
 
     companion object{
@@ -132,6 +138,7 @@ abstract class BaseMapActivity: SupportMapActivity() {
         private const val LINE_SOURCE = "LINE_SOURCE"
         private const val DURATION_CAMERA = 3000
         private const val LINE_LAYER = "LINE_LAYER"
+        private const val CAMERA_ZOOM = 17.0
     }
 
 }

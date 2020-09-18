@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Firebase</string>
+    <string name="next">next</string>
+    <string name="fitness">\"time to fitness, this app will help you exercise. Now you may don\'t put a timer in your phone watch. \"</string>
+    <string name="run">You now can watch , how long you was running</string>
+    <string name="runn">The app will help you to become quick to get form</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="nextpage">NextPage</string>
+    <string name="next_page">Next Page</string>
 </resources>

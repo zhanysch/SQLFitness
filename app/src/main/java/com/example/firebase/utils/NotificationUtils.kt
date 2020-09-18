@@ -1,5 +1,6 @@
-package com.example.firebase.notification
+package com.example.firebase.utils
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -16,14 +17,18 @@ object NotificationUtils {
     private const val CHANNEL_DESK= "CHANNEL_DESCRIPTION"
 
 
-     fun createNotification(context: Context){
+     fun createNotification(context: Context, title: String?, body: String?){
         creaateNotificationChanel(context)
+
         val builder = NotificationCompat.Builder(context, CHANNEL_ID )
-            .setContentTitle("First")
-            .setContentText("Haloo!")
+            .setContentTitle(title)
+            .setContentText(body)
             .setSmallIcon(R.drawable.ic_baseline_add_comment_24)
             .build()
+         showNotification(builder, context)
+     }
 
+    fun showNotification(builder: Notification, context: Context) {
         NotificationManagerCompat.from(context).notify(1,builder)
     }
 
@@ -33,13 +38,9 @@ object NotificationUtils {
             val importance =   NotificationManager.IMPORTANCE_HIGH      //!1       // при уведомл , отсутств звук на phone  все ровно появит звук о уведомлен
             val channel = NotificationChannel(CHANNEL_ID , CHANNEL_NAME, importance)
             channel.description = CHANNEL_DESK
-
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager  // !1
+            val notificationManager =
+                context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager  // !1
             notificationManager.createNotificationChannel(channel)
-
         }
-
     }
-
-
 }

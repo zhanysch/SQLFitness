@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.firebase.R
 import com.example.firebase.data.PreferenceHelper
+import com.example.firebase.onBoard.OnBoardActivityTWO
 import com.example.firebase.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_on_board.*
 
@@ -18,7 +19,7 @@ class OnBoardActivity : AppCompatActivity() {
     private fun setupListeners() {
         btn.setOnClickListener {
             PreferenceHelper.setIsFirtstLaunch() // сохраняет первый запуск
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, OnBoardActivityTWO::class.java))
         }
     }
 }
