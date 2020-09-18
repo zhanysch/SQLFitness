@@ -12,8 +12,9 @@ import kotlinx.android.synthetic.main.onboard_page.*
 
 class OnBoardActivityTWO: AppCompatActivity() {
     private val list = arrayListOf<Fragment>()
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.onboard_page)
         setupViewpager()
         setupListener()

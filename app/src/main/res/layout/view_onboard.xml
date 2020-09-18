@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -14,9 +13,10 @@
     <TextView
         android:id="@+id/tvt1"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:gravity="center"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@id/tvt2"
         android:layout_marginBottom="30dp"
         android:layout_marginStart="30dp"
