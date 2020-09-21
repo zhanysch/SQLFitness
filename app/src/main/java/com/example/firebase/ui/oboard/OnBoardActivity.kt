@@ -19,7 +19,7 @@ class OnBoardActivity : AppCompatActivity() {
     private fun setupListeners() {
         btn.setOnClickListener {
             PreferenceHelper.setIsFirtstLaunch() // сохраняет первый запуск
-            startActivity(Intent(this, OnBoardActivityTWO::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 }

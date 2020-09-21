@@ -9,7 +9,8 @@ object PermissionUtlis {
 
     const val LOCATION_REQUEST_CODE = 101 //3)
 
-    private val locationPermision = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)  // указыв на permission 0)
+    private val locationPermision = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.ACCESS_COARSE_LOCATION)  // указыв на permission 0)
 
 
     // метод на проверку геолакац

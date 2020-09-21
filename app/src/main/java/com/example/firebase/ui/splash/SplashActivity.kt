@@ -26,7 +26,7 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }
         else {
-            startActivity(Intent(this, OnBoardActivityTWO::class.java))
+            startActivity(Intent(this, OnBoardActivity::class.java))
             finish()
         }
     }

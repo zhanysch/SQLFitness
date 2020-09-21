@@ -2,13 +2,19 @@ package com.example.firebase.base
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Handler
 import android.os.Looper
 import com.example.firebase.R
+import com.example.firebase.ui.main.MainContract
+import com.example.firebase.ui.main.MainPresenter
 import com.example.firebase.utils.MapUtils
 import com.example.firebase.utils.PermissionUtlis
 import com.mapbox.core.constants.Constants.PRECISION_6
+import com.mapbox.geojson.Feature
+import com.mapbox.geojson.FeatureCollection
 import com.mapbox.geojson.LineString
+import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -21,6 +27,7 @@ import com.mapbox.mapboxsdk.plugins.annotation.Symbol
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolManager
 import com.mapbox.mapboxsdk.plugins.annotation.SymbolOptions
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
+import okio.Okio.source
 
 
 abstract class BaseMapActivity: SupportMapActivity() {
@@ -28,6 +35,7 @@ abstract class BaseMapActivity: SupportMapActivity() {
 
     protected var symbolManager : SymbolManager? = null
     private var symbol: Symbol? = null
+
 
 
 
@@ -55,7 +63,7 @@ abstract class BaseMapActivity: SupportMapActivity() {
 
     }
 
-    protected fun getDirections(latLng: LatLng) {  // по клик на карту расчитыва путь из точки А в точку Б
+  /*  private fun getDirections(latLng: LatLng) {  // по клик на карту расчитыва путь из точки А в точку Б
         val location = map?.locationComponent?.lastKnownLocation
         MapUtils.getDirections(location,latLng){ data ->
             val source = map?.style?.getSourceAs<GeoJsonSource>(LINE_SOURCE)
@@ -71,12 +79,31 @@ abstract class BaseMapActivity: SupportMapActivity() {
                 }
             }
         }
+    }*/
+
+  /*  protected fun getDirections(latLng: ArrayList<Point>) {  // разрисовыв на карте перемещение
+        val source = map?.style?.getSourceAs<GeoJsonSource>(LINE_SOURCE)
+        val lineString = LineString.fromLngLats(latLng)
+        val featureCollection = FeatureCollection.fromFeature(Feature.fromGeometry(lineString))
+        source.let {geoJsonsource ->
+            geoJsonsource?.setGeoJson(featureCollection)
+        }
+    }*/
+
+    protected fun getDirections(latLng: ArrayList<Point>) {  // разрисовыв на карте перемещение
+        presenter?.byDirections(latLng)
+        val source = map?.style?.getSourceAs<GeoJsonSource>(LINE_SOURCE)
+        val lineString = LineString.fromLngLats(latLng)
+        val featureCollection = FeatureCollection.fromFeature(Feature.fromGeometry(lineString))
+        source.let {geoJsonsource ->
+            geoJsonsource?.setGeoJson(featureCollection)
+        }
     }
 
 
     private fun setupListeners(mapBoxMap: MapboxMap) {
        mapBoxMap.addOnMapClickListener {
-           getDirections(it)
+          // getDirections(it)
            addMarker(it)
            return@addOnMapClickListener true
        }
