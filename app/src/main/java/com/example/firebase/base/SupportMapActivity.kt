@@ -17,7 +17,7 @@ abstract class SupportMapActivity: AppCompatActivity(), MainContract.View {
 
     protected var mapView: MapView? = null
     protected var map: MapboxMap? = null
-    protected var presenter: MainPresenter? =null
+    /*protected var presenter: MainPresenter? =null*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +25,8 @@ abstract class SupportMapActivity: AppCompatActivity(), MainContract.View {
         setContentView(getResId())
         mapView = findViewById(getMapViewId())
         mapView?.onCreate(savedInstanceState)  // 1)чтоб карта функционир при перевороте карты
-        presenter = MainPresenter()
-        presenter?.bind(this)
+       /* presenter = MainPresenter()
+        presenter?.bind(this)*/
 
         mapView?.getMapAsync { mapBoxMap ->
             map = mapBoxMap
@@ -66,7 +66,7 @@ abstract class SupportMapActivity: AppCompatActivity(), MainContract.View {
     override fun onDestroy() {
         super.onDestroy()
         mapView?.onDestroy()
-        presenter?.unbind()
+
     }
 
 }

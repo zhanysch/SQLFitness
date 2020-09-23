@@ -1,4 +1,4 @@
-package com.example.firebase.data
+package com.example.firebase.data.local
 
 import android.content.Context
 import android.content.SharedPreferences

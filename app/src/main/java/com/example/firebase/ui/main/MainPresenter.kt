@@ -9,16 +9,20 @@ class MainPresenter: MainContract.Presenter {
 
     private var view: MainContract.View? = null
 
-    override fun byDirections(latLng: ArrayList<Point>) {
-        val lineString = LineString.fromLngLats(latLng)
+
+
+
+
+    override fun byDirections(list: ArrayList<Point>) {
+        val lineString = LineString.fromLngLats(list)
         val featureCollection = FeatureCollection.fromFeature(Feature.fromGeometry(lineString))
-      /*  source.let {geoJsonsource ->
-            geoJsonsource?.setGeoJson(featureCollection)
-        }*/
+        view?.viewShow(featureCollection)
     }
+
 
     override fun bind(view: MainContract.View) {
         this.view = view
+
 
     }
 

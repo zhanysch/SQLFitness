@@ -5,9 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.firebase.R
-import com.example.firebase.data.PreferenceHelper
+import com.example.firebase.data.local.PreferenceHelper
 import com.example.firebase.onBoard.OnBoardActivityTWO
-import com.example.firebase.ui.main.MainActivity
 import com.example.firebase.ui.oboard.OnBoardActivity
 
 class SplashActivity : AppCompatActivity() {

@@ -4,8 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.firebase.R
-import com.example.firebase.data.PreferenceHelper
-import com.example.firebase.onBoard.OnBoardActivityTWO
+import com.example.firebase.data.local.PreferenceHelper
 import com.example.firebase.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_on_board.*
 
