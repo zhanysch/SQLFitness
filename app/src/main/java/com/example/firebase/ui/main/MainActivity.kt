@@ -16,7 +16,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
 
-class MainActivity : BaseMapActivity() {
+class MainActivity : BaseMapActivity(), MainContract.View {
     override fun getResId() = R.layout.activity_main
     override fun getMapViewId() = R.id.mapView
     private  var presenter: MainPresenter? =null

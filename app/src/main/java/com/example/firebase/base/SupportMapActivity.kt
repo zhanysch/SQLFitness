@@ -10,14 +10,14 @@ import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.Style
 
-abstract class SupportMapActivity: AppCompatActivity(), MainContract.View {
+abstract class SupportMapActivity: AppCompatActivity() {
     abstract fun getResId(): Int
     abstract fun getMapViewId(): Int
     abstract fun onMapLoaded(mapBoxMap: MapboxMap, style: Style)
 
     protected var mapView: MapView? = null
     protected var map: MapboxMap? = null
-    /*protected var presenter: MainPresenter? =null*/
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +25,7 @@ abstract class SupportMapActivity: AppCompatActivity(), MainContract.View {
         setContentView(getResId())
         mapView = findViewById(getMapViewId())
         mapView?.onCreate(savedInstanceState)  // 1)чтоб карта функционир при перевороте карты
-       /* presenter = MainPresenter()
-        presenter?.bind(this)*/
+
 
         mapView?.getMapAsync { mapBoxMap ->
             map = mapBoxMap

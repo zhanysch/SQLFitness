@@ -9,4 +9,5 @@ import com.example.firebase.data.model.MainTraning
 @TypeConverters(value = [TraningTypeConverter::class])
 @Database(entities = [MainTraning::class, LatlngPoints::class],version = 1)
 abstract class TraningDataBase: RoomDatabase() {
+    abstract fun getTraningDao(): TraningDao
 }

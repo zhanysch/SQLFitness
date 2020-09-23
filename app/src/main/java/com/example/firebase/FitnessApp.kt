@@ -14,14 +14,14 @@ class FitnessApp: Application() {
         PreferenceHelper.initPreference(applicationContext)
         app = this
         db = Room.databaseBuilder(applicationContext,TraningDataBase::class.java, DB_NAME)
-            
+
             .build()
     }
 
     fun getDB() = db
 
     companion object{
-        private var app : FitnessApp? = null
+         var app : FitnessApp? = null
         private const val DB_NAME = "MY_DB"
     }
 
