@@ -10,4 +10,7 @@
     <string name="next_page">Next Page</string>
     <string name="test">TEST</string>
     <string name="hfhg">Test</string>
+    <string name="pass_to_check_result">Pass to check result</string>
+    <string name="check_result">check result</string>
+    <string name="delete">Delete</string>
 </resources>

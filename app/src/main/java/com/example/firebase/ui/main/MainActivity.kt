@@ -10,9 +10,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.firebase.MyLocationForegroundService
 import com.example.firebase.R
 import com.example.firebase.base.BaseMapActivity
+import com.example.firebase.data.events.TraningEndedEvent
 import com.example.firebase.data.events.UserLocationEvent
+import com.example.firebase.ui.history.HistoryActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.mapbox.geojson.FeatureCollection
+import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.maps.Style
 import kotlinx.android.synthetic.main.view_bottom_sheet.*
 import org.greenrobot.eventbus.EventBus
@@ -33,6 +36,8 @@ class MainActivity : BaseMapActivity(), MainContract.View {
         stopForeground()
         presenter = MainPresenter()
         presenter?.bind(this)
+        presenter?.showLastRace()
+
     }
 
 
@@ -48,6 +53,10 @@ class MainActivity : BaseMapActivity(), MainContract.View {
         }
         BtnStart.setOnClickListener {
             startForegroundService()
+        }
+
+        btnResult.setOnClickListener {
+            startActivity(Intent(this , HistoryActivity::class.java))
         }
         BtnStop.setOnClickListener {
             stopForeground()
@@ -94,12 +103,22 @@ class MainActivity : BaseMapActivity(), MainContract.View {
         presenter?.byDirections(event.list)
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)  // в главном потоке
+    fun endedTraning(event: TraningEndedEvent) {
+        presenter?.saveTraning()
+    }
+
+
     override fun viewShow(featureCollection: FeatureCollection) {
         getDirections(featureCollection)
     }
 
     override fun changeBsState(stateCollapsed: Int) {
        bottomSheetBehavior?.state = stateCollapsed
+    }
+
+    override fun showLastRoute(point: ArrayList<Point>) {
+        presenter?.byDirections(point)
     }
 
     override fun onStart() {  // получаем событие

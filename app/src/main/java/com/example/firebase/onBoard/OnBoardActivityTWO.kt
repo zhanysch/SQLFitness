@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.example.firebase.R
 import com.example.firebase.ui.main.MainActivity
+import com.example.firebase.ui.oboard.OnBoardActivity
 import kotlinx.android.synthetic.main.onboard_page.*
 
 class OnBoardActivityTWO: AppCompatActivity() {
@@ -40,7 +41,7 @@ class OnBoardActivityTWO: AppCompatActivity() {
         })
        Btngo.setOnClickListener {
             if (checktoPage(OnviewPage.currentItem)) {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, OnBoardActivity::class.java))
                 finish()
             } else {
                 OnviewPage.currentItem += 1

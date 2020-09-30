@@ -8,6 +8,7 @@ import android.os.IBinder
 import android.os.Looper
 
 import com.example.firebase.data.NotificationHelper
+import com.example.firebase.data.events.TraningEndedEvent
 import com.example.firebase.data.events.UserLocationEvent
 import com.google.android.gms.location.*
 import com.mapbox.geojson.Feature
@@ -31,6 +32,7 @@ class MyLocationForegroundService: Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == STOP_SERVICE_ACTION){
            stopForeground(true)
+            stopSelf()
         } else {
 
             fusedLocation = LocationServices.getFusedLocationProviderClient(applicationContext) // fusedlocati  данные передает последн данн о нашем местонахожден
@@ -65,9 +67,11 @@ class MyLocationForegroundService: Service() {
         }
     }
     override fun onDestroy() {
-        scope.cancel()
         super.onDestroy()
+        scope.cancel()
         fusedLocation?.removeLocationUpdates(fLocListener)
+        EventBus.getDefault().post(TraningEndedEvent(true))  // TraningEndedEvent из data class UserLocationEvent
+        // true т.к значние  TraningEndedEvent boolean в dataclass
     }
 
     companion object{

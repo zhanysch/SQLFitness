@@ -27,19 +27,23 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
- <TextView
-        android:id="@+id/TextTV"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-
-        android:layout_marginTop="28dp"
-        app:layout_constraintTop_toBottomOf="@+id/btnBottomSheet"
+    <Button
+        android:id="@+id/btnResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnBottomSheet"
         app:layout_constraintStart_toStartOf="parent"
-       />
+        android:layout_marginTop="20dp"
+        android:text="@string/check_result"
+        android:layout_marginStart="20dp"/>
+
+
+
+
+
+
+
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

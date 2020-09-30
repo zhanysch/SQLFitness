@@ -1,5 +1,6 @@
 package com.example.firebase.ui.main
 
+import android.util.Log
 import com.example.firebase.FitnessApp
 import com.example.firebase.data.model.LatlngPoints
 import com.example.firebase.data.model.MainTraning
@@ -15,9 +16,11 @@ class MainPresenter: MainContract.Presenter {
     private var view: MainContract.View? = null
     private val job = Job()
    private val scope = CoroutineScope(job)
+    private var list = arrayListOf<Point>()//1
+    private var startTime : Long = 0
 
     override fun byDirections(list: ArrayList<Point>) {
-        saveInDB(list)
+        this.list = list//1
         val lineString = LineString.fromLngLats(list)
         val featureCollection = FeatureCollection.fromFeature(Feature.fromGeometry(lineString))
         view?.viewShow(featureCollection)
@@ -33,7 +36,24 @@ class MainPresenter: MainContract.Presenter {
 
     }
 
-    private fun saveInDB(list: ArrayList<Point>) {
+    override fun showLastRace() {  // вставляет
+        scope.launch(Dispatchers.Default) {
+            val data  = FitnessApp.app?.getDB()?.getTraningDao()?.getTraning()
+            Log.d("fdddgfd", "fdsfs")
+
+           // data?.point?.point?.let { view?.showLastRoute(it) }
+        }
+    }
+
+    override fun saveTraning() {
+        saveInDB(list)  // 1
+    }
+
+    override fun saveCurrentTime() {
+        startTime = System.currentTimeMillis()
+    }
+
+    private fun saveInDB(list: ArrayList<Point>) { // сохраняет
       scope.launch(Dispatchers.Default) {
           val data = getTraningModel(list)
           FitnessApp.app?.getDB()?.getTraningDao()?.addTraning(data)
@@ -44,9 +64,9 @@ class MainPresenter: MainContract.Presenter {
        return MainTraning(
            point = LatlngPoints(point = list),
            distance = 132,
-           duration = 143,
-           startAt = "df",
-           finishAt = "ggd",
+           duration = System.currentTimeMillis() - startTime,
+           startAt = startTime,
+           finishAt = System.currentTimeMillis(),
            calories = 12
        )
     }
