@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
+        android:text="@string/_13_12_12_30_09_20"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -22,12 +23,14 @@
         app:layout_constraintTop_toBottomOf="@id/TextOne"
         android:layout_marginTop="2dp"
         android:padding="5dp"
+        android:text="@string/_end_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
     <TextView
         android:id="@+id/TextThree"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/distance"
         app:layout_constraintTop_toBottomOf="@id/TextTwo"
         android:layout_marginTop="2dp"
         android:padding="5dp"

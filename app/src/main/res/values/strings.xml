@@ -13,4 +13,7 @@
     <string name="pass_to_check_result">Pass to check result</string>
     <string name="check_result">check result</string>
     <string name="delete">Delete</string>
+    <string name="_13_12_12_30_09_20">Время начала: %1s</string>
+    <string name="_end_time">Время окончания: %1s</string>
+    <string name="distance">Расстояние: %1s киллометров</string>
 </resources>

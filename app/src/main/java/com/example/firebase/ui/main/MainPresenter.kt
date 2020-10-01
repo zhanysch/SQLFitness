@@ -22,6 +22,7 @@ class MainPresenter: MainContract.Presenter {
     private var startTime : Long = 0
 
     override fun byDirections(list: ArrayList<Point>) {
+        if (list.size == 1) saveCurrentTime()
         this.list = list//1
         val lineString = LineString.fromLngLats(list)
         val featureCollection = FeatureCollection.fromFeature(Feature.fromGeometry(lineString))
