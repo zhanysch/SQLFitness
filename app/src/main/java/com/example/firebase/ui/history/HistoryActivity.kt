@@ -7,8 +7,6 @@ import com.example.firebase.FitnessApp
 import com.example.firebase.R
 import com.example.firebase.data.model.MainTraning
 import kotlinx.android.synthetic.main.activity_history.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class HistoryActivity : AppCompatActivity(), ItemClicks, HistoryContract.View {
 
@@ -22,21 +20,23 @@ class HistoryActivity : AppCompatActivity(), ItemClicks, HistoryContract.View {
         setContentView(R.layout.activity_history)
         setupRecycler()
         presenter = HistoryPresenter()
+        presenter?.bind(this)
     }
 
     private fun setupRecycler() {
         recyclerHistory.adapter = adapter
-
         FitnessApp.app?.getDB()?.getTraningDao()?.getTraningLiveData()?.observe(this, Observer {
             adapter.submitList(it)
         })
     }
 
     override fun clickDelete(item: MainTraning) {
-        GlobalScope.launch {
-           kotlin.runCatching {
-               FitnessApp.app?.getDB()?.getTraningDao()?.deleteTraning(item.id)
-           }
-        }
+        presenter?.byDelete(item)
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter?.unbind()
     }
 }

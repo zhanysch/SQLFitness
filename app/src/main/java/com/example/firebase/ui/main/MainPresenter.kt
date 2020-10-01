@@ -2,6 +2,7 @@ package com.example.firebase.ui.main
 
 import android.util.Log
 import com.example.firebase.FitnessApp
+import com.example.firebase.data.events.UserLocationEvent
 import com.example.firebase.data.model.LatlngPoints
 import com.example.firebase.data.model.MainTraning
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -17,6 +18,7 @@ class MainPresenter: MainContract.Presenter {
     private val job = Job()
    private val scope = CoroutineScope(job)
     private var list = arrayListOf<Point>()//1
+    private var distance : Double = 0.0
     private var startTime : Long = 0
 
     override fun byDirections(list: ArrayList<Point>) {
@@ -24,6 +26,10 @@ class MainPresenter: MainContract.Presenter {
         val lineString = LineString.fromLngLats(list)
         val featureCollection = FeatureCollection.fromFeature(Feature.fromGeometry(lineString))
         view?.viewShow(featureCollection)
+    }
+
+    override fun collectDistance(distance: Double) {
+        this.distance = distance
     }
 
     override fun checkBsState(state: Int?) {
@@ -63,7 +69,7 @@ class MainPresenter: MainContract.Presenter {
     private fun getTraningModel(list: ArrayList<Point>): MainTraning {
        return MainTraning(
            point = LatlngPoints(point = list),
-           distance = 132,
+           distance = distance,
            duration = System.currentTimeMillis() - startTime,
            startAt = startTime,
            finishAt = System.currentTimeMillis(),

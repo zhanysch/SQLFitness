@@ -1,5 +1,6 @@
 package com.example.firebase.ui.main
 
+import com.example.firebase.data.events.UserLocationEvent
 import com.example.firebase.ui.LiveCycle
 import com.mapbox.geojson.FeatureCollection
 import com.mapbox.geojson.Point
@@ -14,6 +15,7 @@ interface MainContract {
 
     interface Presenter : LiveCycle<View>{
         fun byDirections(list:  ArrayList<Point>)
+        fun collectDistance(distance: Double)
         fun checkBsState(state: Int?)
         fun showLastRace()
         fun saveTraning()

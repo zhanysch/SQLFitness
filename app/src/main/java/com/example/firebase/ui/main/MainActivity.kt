@@ -101,6 +101,7 @@ class MainActivity : BaseMapActivity(), MainContract.View {
     @Subscribe(threadMode = ThreadMode.MAIN)  // в главном потоке
     fun getUserData(event: UserLocationEvent) {
         presenter?.byDirections(event.list)
+        presenter?.collectDistance(event.distance)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)  // в главном потоке

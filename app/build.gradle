@@ -73,6 +73,9 @@ dependencies {
     implementation 'com.mapbox.mapboxsdk:mapbox-sdk-services:5.5.0'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
+    /// дляо turfMEasurment считает расстояние между точками
+    implementation 'com.mapbox.mapboxsdk:mapbox-sdk-turf:5.5.0'
+
 
 
 
